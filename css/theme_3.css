@@ -1,14 +1,14 @@
 .bef_color{
-	color: #ffffff;/* 设置文字颜色 */
+	color: #9e9e9e;/* 设置文字颜色 */
 }
 .bef_border{
-	border: 1px solid #ffffff; /* 在左侧加上分隔线 */
+	border: 1px solid #9e9e9e; /* 在左侧加上分隔线 */
 }
 .aft_color{
 	background: #000000;/* 设置背景色 */
 }
-.main input[type="button"]:hover{
-	background: #ffffff;
+.enter_blog a:hover{
+	background: #9e9e9e;
 	color: #000000;
 	border: 1px solid #000000;
 }

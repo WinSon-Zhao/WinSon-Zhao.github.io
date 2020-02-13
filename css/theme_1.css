@@ -7,7 +7,7 @@
 .aft_color{
 	background: #000000;/* 设置背景色 */
 }
-.main input[type="button"]:hover{
+.enter_blog a:hover{
 	background: #ffffff;
 	color: #000000;
 	border: 1px solid #000000;
