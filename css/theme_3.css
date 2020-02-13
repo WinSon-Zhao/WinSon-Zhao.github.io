@@ -1,14 +1,17 @@
 .bef_color{
-	color: #9e9e9e;/* 设置文字颜色 */
-}
-.bef_border{
-	border: 1px solid #9e9e9e; /* 在左侧加上分隔线 */
+	color: #9e9e9e;/* 颜色-1 */
 }
 .aft_color{
-	background: #000000;/* 设置背景色 */
+	background: #000000;/* 颜色-2 */
+}
+.bef_border{
+	border: 1px solid #9e9e9e; /* 颜色-1 */
 }
 .enter_blog a:hover{
-	background: #9e9e9e;
-	color: #000000;
-	border: 1px solid #000000;
+	color: #000000;/* 颜色-1-反 */
+	background: #9e9e9e;/* 颜色-2-反 */
+	border: 1px solid #000000;/* 颜色-1-反 */
+}
+#sig_svg path{
+	stroke: #9e9e9e;/* 颜色-1 */
 }

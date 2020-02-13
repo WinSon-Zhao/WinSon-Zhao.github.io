@@ -1,14 +1,17 @@
 .bef_color{
-	color: #000000;/* 设置文字颜色 */
-}
-.bef_border{
-	border: 1px solid #000000; /* 在左侧加上分隔线 */
+	color: #000000;/* 颜色-1 */
 }
 .aft_color{
-	background: #ffffff;/* 设置背景色 */
+	background: #ffffff;/* 颜色-2 */
+}
+.bef_border{
+	border: 1px solid #000000; /* 颜色-1 */
 }
 .enter_blog a:hover{
-	background: #000000;
-	color: #ffffff;
-	border: 1px solid #ffffff;
+	color: #ffffff;/* 颜色-1-反 */
+	background: #000000;/* 颜色-2-反 */
+	border: 1px solid #ffffff;/* 颜色-1-反 */
+}
+#sig_svg path{
+	stroke: #000000;/* 颜色-1 */
 }
