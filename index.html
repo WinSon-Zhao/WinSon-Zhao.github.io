@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>WinSonZhao ©博客(BLOG)</title>
-	<!--<link type="text/css" charset="UTF-8"></link>-->
-	<link rel="stylesheet" type="text/css" charset="UTF-8" id="global_link" href="css/theme_1.css">
+	<!--<link type="text/css" charset="UTF-8"></link>
+	<link rel="stylesheet" type="text/css" charset="UTF-8" id="global_link" href="css/theme_1.css">-->
+	<style type="text/css" charset="UTF-8" id="css_change">
+	.bef_color{
+		color: #ffffff;/* 颜色-1 */
+	}
+	.aft_color{
+		background: #000000;/* 颜色-2 */
+	}
+	.bef_border{
+		border: 1px solid #ffffff; /* 颜色-1 */
+	}
+	.enter_blog a:hover{
+		color: #000000;/* 颜色-1-反 */
+		background: #ffffff;/* 颜色-2-反 */
+		border: 1px solid #000000;/* 颜色-1-反 */
+	}
+	#sig_svg path{
+		stroke: #ffffff;/* 颜色-1 */
+	}
+	</style>
 	<style type="text/css" charset="UTF-8">
 		/* reset */
 	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
@@ -59,8 +78,8 @@
 	}
 	/* ul 的li横向排列- */
 	.theme { 
-		font:12px verdana, arial, sans-serif; /* 设置文字大小和字体样式 */
-		height: 10px;
+		font:1em verdana, arial, sans-serif; /* 设置文字大小和字体样式 */
+		height: 15px;
 	}
 	.theme li {
 		float: left; /* 往左浮动 */
@@ -74,7 +93,7 @@
 		display: block; /* 将链接设为块级元素 */
 		padding: 2px 5px; /* 设置内边距 */
 		text-decoration: none; /* 去掉下划线 */
-		font-size: 1em;
+		font-size: 1.5em;
 	}
 	/* 响应式-1440px/1280px/1024px/768px/736px/667px/640px/600px/480px/320px/ */
 	@media (max-width: 1280px){
@@ -111,20 +130,17 @@
 			<span id="date_text_timer_">0s</span>
 		</div>
 	    <br>
-
 	    <div>
+	    	<span class="aft_color bef_color">主题(Theme) :</span>
 		    <ul class="theme">
 			    <!--主题列表-->
-			    <li>
-			    	<a class="bef_border" href="JavaScript:;" onclick="g_obj.a_click('theme_1')" style="background:#000;color:#fff;" >主题(Theme)-1</a>
-			    </li>
-			    <li><a class="bef_border" href="JavaScript:;" onclick="g_obj.a_click('theme_2')" style="background:#fff;color:#000;" >主题(Theme)-2</a></li>
-			    <li><a class="bef_border" href="JavaScript:;" onclick="g_obj.a_click('theme_3')" class="last"  style="background:#000;color:#9e9e9e;" >主题(Theme)-3</a></li>
-			    <li><a class="bef_border" href="JavaScript:;" onclick="g_obj.a_click('theme_4')" class="last"  style="background:#9e9e9e;color:#000;" >主题(Theme)-4</a></li>
+			    <li><a class="bef_border" href="JavaScript:;"  style="background:#000;color:#fff;" onclick="g_obj.theme_click(this)">-1-</a></li>
+			    <li><a class="bef_border" href="JavaScript:;" style="background:#fff;color:#000;" onclick="g_obj.theme_click(this)">-2-</a></li>
+			    <li><a class="bef_border" href="JavaScript:;" style="background:#000;color:#9e9e9e;" onclick="g_obj.theme_click(this)">-3-</a></li>
+			    <li><a class="bef_border" href="JavaScript:;" style="background:#9e9e9e;color:#000;" onclick="g_obj.theme_click(this)">-4-</a></li>
 		    </ul>
 	    </div>
 	    <br>
-
 		<div class="enter_blog">
       		<!--进入博客-->
       		<a class="aft_color bef_color bef_border" href="JavaScript:;" onclick="g_obj.openBlog()" >进入博客(Enter Blog)</a>
@@ -195,13 +211,15 @@
 	    	return o;
 	    }
 
-		g_obj.a_click = function (cssURL){//切换页面颜色
-			var global_link = g_obj.getId('global_link');
-			var global_href = global_link.attributes['href'].value;
-			var new_link = 'css/'+cssURL+'.css';
-			if(global_href !== new_link){
-				global_link.attributes['href'].value = new_link;
-			}
+		g_obj.theme_click = function(that){//切换页面颜色
+			var cssStr = '.bef_color{\r\ncolor: [1] ;\r\n}\r\n .aft_color{\r\nbackground: [2] ;\r\n}\r\n';
+			cssStr += '.bef_border{\r\nborder: 1px solid [1] ;\r\n}\r\n #sig_svg path{\r\nstroke: [1] ;\r\n}\r\n';
+			cssStr += '.enter_blog a:hover{\r\ncolor: [2]\r\n; background: [1] ;\r\nborder: 1px solid [2] ;\r\n}';
+
+			cssStr = cssStr.replace(/\[1\]/g,that.style['color']);
+			cssStr = cssStr.replace(/\[2\]/g,that.style['background']);
+
+			g_obj.html('css_change',cssStr);
 		}
 		g_obj.checkTime =function (i){//补零
 		    if(i<10){ i = "0"+i; }
@@ -304,12 +322,12 @@
 	        g_obj.html('browser_',browser_info);//浏览器信息
 
 	        //ping耗时
-	        g_obj.ping('https://winson-zhao.github.io/img/gitee.png',function(url,msg){
+	        /*g_obj.ping('https://winson-zhao.github.io/img/gitee.png',function(url,msg){
 	        	g_obj.html('github_ping','&nbsp &nbsp Ping &nbsp'+msg);
 	        });
 	        g_obj.ping('https://winsonzhao.gitee.io/img/github.png',function(url,msg){
 	        	g_obj.html('gitee_ping','&nbsp &nbsp Ping &nbsp'+msg);
-	        });
+	        });*/
 	    }
 
 	    //当前页面存在iframe中，强制跳转
