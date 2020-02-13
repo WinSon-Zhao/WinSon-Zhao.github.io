@@ -76,27 +76,22 @@
 		text-decoration: none; /* 去掉下划线 */
 		font-size: 1em;
 	}
-	/* 响应式- *//*
-	@media (max-width:1440px){
-	}
+	/* 响应式-1440px/1280px/1024px/768px/736px/667px/640px/600px/480px/320px/ */
 	@media (max-width: 1280px){
+		.main{
+			width: 70%;
+		}
 	}
 	@media (max-width: 1024px){
+		.main{
+			width: 80%;
+		}
 	}
-	@media (max-width: 768px){
+	@media (max-width: 990px){
+		.main{
+			width: 90%;
+		}
 	}
-	@media (max-width: 736px){
-	}
-	@media (max-width: 667px){
-	}
-	@media (max-width: 640px){
-	}
-	@media (max-width: 600px){
-	}
-	@media (max-width: 480px){
-	}
-	@media (max-width: 320px){
-	}*/
 	</style>
 </head>
 <body class="aft_color">
@@ -145,21 +140,27 @@
 		    <!--介绍-->
 			<p id="blog_title" class="bef_color" >
 				<u id="blog_info" >博客介绍(Blog Introduction) : </u>
-				<span id="blog_info_" >…………</span>
+				<span id="blog_info_" >这个人很懒，什么都没留下。(What a lazy man he is, he left nothing behind.)…………</span>
 			</p>
 			<br>
 			<p class="bef_color" >
 				<u >GitHub : </u>
 				<span ><a href="https://winson-zhao.github.io/">https://winson-zhao.github.io/</a></span>
+				<span id="github_ping"></span>
 			</p>
 			<p class="bef_color" >
 				<u >Gitee : </u>
 				<span ><a href="https://winsonzhao.gitee.io/">https://winsonzhao.gitee.io/</a></span>
+				<span id="gitee_ping"></span>
 			</p>
 		</div>
 		<hr>
 
 	    <!--当前浏览器信息-->
+		<p class="bef_color" >
+			<u >窗口尺寸(Page Size) : </u>
+			<span id="browser_size_">-</span>
+		</p>
 	    <div id="browser_" style="font-size: 0.9em;"></div>
 		<hr>
 
@@ -202,7 +203,7 @@
 				global_link.attributes['href'].value = new_link;
 			}
 		}
-		g_obj.checkTime =function (i){
+		g_obj.checkTime =function (i){//补零
 		    if(i<10){ i = "0"+i; }
 		    return i
 		}
@@ -219,7 +220,7 @@
 		    g_obj.timer = g_obj.timer + 1;
 	        g_obj.html('date_text_timer_',g_obj.timer+'s');
 	    }
-	    g_obj.timeZone = function(){
+	    g_obj.timeZone = function(){//获取时区
 	    	var zone = 0-(new Date().getTimezoneOffset()/60);
 	    	return (zone >= 0?'+':'-')+zone;
 	    }
@@ -260,13 +261,28 @@
 	    	//返回
 	    	//window.history.back(-1);
 	    }
-
+	    g_obj.ping = function(url,fn){//通过加载图片实现ping功能
+		  	var start = new Date().getTime();
+	    	var img = new Image();
+		  	img.src = url+"?t="+start;
+		  	try{//如果获取不到可能是超时了
+			  	img.onload = function(){
+			  		var end = new Date().getTime();
+			    	//console.log(url,end,'-',start,'=',end-start);
+			  		fn(url,(end-start)+'ms');//回调函数
+			  	}
+		  	}catch(err){//出错就不传递end
+		  		fn(url,'超时(TimeOut)!');//回调函数
+		  	}
+	    }
+	    //------------分割线--------
 	    window.onresize = function(){
 	        g_obj.html('browser_size_',window.innerWidth+'x'+window.innerHeight);//浏览器尺寸
 	    }
 	    window.onload = function(){
 	    	g_obj['timer'] = 0 ;
 	        g_obj.html('date_text_zone_',g_obj.timeZone());//时区
+	        g_obj.html('browser_size_',window.screen.width+'*'+window.screen.height);//窗口尺寸
 	    	
 	    	//启动计时器
 	        setInterval(function(){
@@ -284,10 +300,18 @@
 	        browser_info += g_obj.browser.info('Cookies 状态(Cookies Status) : ',navigator.cookieEnabled);
 	        browser_info += g_obj.browser.info('用户代理(User Agent) : ',navigator.userAgent);
 	        browser_info += g_obj.browser.info('浏览器语言(Browser Language) : ',g_obj.browser.language);
-	        browser_info += g_obj.browser.info('窗口尺寸(Page Size) : ',window.screen.width+'*'+window.screen.height);
 	        browser_info += g_obj.browser.info('浏览器字体(Browser Font) : ',g_obj.browser.style.fontSize+' '+g_obj.browser.style.fontFamily);
 	        g_obj.html('browser_',browser_info);//浏览器信息
+
+	        //ping耗时
+	        g_obj.ping('https://winson-zhao.github.io/img/gitee.png',function(url,msg){
+	        	g_obj.html('github_ping','&nbsp &nbsp Ping &nbsp'+msg);
+	        });
+	        g_obj.ping('https://winsonzhao.gitee.io/img/github.png',function(url,msg){
+	        	g_obj.html('gitee_ping','&nbsp &nbsp Ping &nbsp'+msg);
+	        });
 	    }
+
 	    //当前页面存在iframe中，强制跳转
 	    if(window.self !== window.top || top.location.href !== self.location.href){
 		//    top.location.href = self.location.href;
