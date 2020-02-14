@@ -200,7 +200,7 @@ html,body{
 	<div class="textCon" >
 		<span id="text-1" class="typerTarget"></span><br>
 
-		<span id="text-2" style="margin: 0 0 0 2em;"></span>
+		<span id="text-2" style="margin: 0 0 0 2em;"></span><br>
 		<span id="text-3" ></span><br>
 
 		<span id="text-4" style="margin: 0 0 0 2em;"></span><br>
@@ -293,9 +293,9 @@ html,body{
 						fn();
 						return;
 					}
+					if(timer){window.clearTimeout(timer)}
 					timeout();
 				},w_index >= w_len ? k_timer:w_timer);
-				if(timer){timer.clearTimeOut()}
 			}
 			timeout();
 		}
@@ -329,7 +329,7 @@ html,body{
 			$('.heart').removeAttr('style');
 			var txts = {
 				'text-1':`Dear ChenJing:`,
-				'text-2':`I have been in love with you for:`,
+				'text-2':` love me little and love me long. 不求情意绵绵，但求天长地久。`,
 				'text-3':timer_start(),
 				'text-4':`祝亲爱的宝贝，节日快乐！！！`,
 				'text-5':`很抱歉，这个礼物有点迟到。`,
@@ -339,7 +339,7 @@ html,body{
 				'text-9':`----Only love you, ZhaoYunLiang`,
 				'text-10':`-2020/02/14-`,
 			}
-			Typewriter(txts,100,2000,function(){
+			Typewriter(txts,60,1000,function(){
 				window.setInterval(function(){
 					$('#text-3').html(timer_start());
 				},1000);
