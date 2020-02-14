@@ -12,6 +12,31 @@
 	<!--<link rel="stylesheet" type="text/css" charset="UTF-8" href="../js/prism/prism.css">-->
 <style type="text/css" charset="UTF-8">
 /*页面样式*/
+@font-face {
+  font-family: 'Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rye Regular'), local('Rye-Regular'), url('../fonts/text1.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'Rye';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rye Regular'), local('Rye-Regular'), url('../fonts/Clockopia.ttf') format('woff');
+}
+@font-face {
+  font-family: 'Monda_no';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Monda'), local('Monda-Regular'), url('../fonts/Monda-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Monda_bo';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Monda Bold'), local('Monda-Bold'), url('../fonts/Monda-Bold.ttf') format('truetype');
+}
 /*背景设置---*/
 *{
     margin: 0;
@@ -31,13 +56,14 @@ html,body{
     -moz-transform:translate(-50%,-50%);
     -o-transform:translate(-50%,-50%);
   	background-image: radial-gradient(#ffeded, #ffc7c7);
+    font-family: "Regular", Georgia, sans-serif;
 }
 /*心形*/
 .heart{
-    width:80px;
-    height:80px;
+    width:150px;
+    height:150px;
     background-color:#cc2a5d;
-    margin:200px auto;
+    margin:100px auto;
     position: relative;
     transform: rotate(45deg);
     animation: heart 1s ease-in infinite;
@@ -64,7 +90,7 @@ html,body{
 }
 /*心中文字*/
 .heart span{
-	font-size: 2em;
+	font-size: 4em;
 	z-index: 9999;
 	position: absolute;
 	transform: rotate(-45deg);
@@ -90,8 +116,8 @@ html,body{
     -ms-user-select: none;
     user-select: none;
     width:700px;
-    height:60px;
-    margin:50px auto;
+    height:10px;
+    margin:0px auto;
 }
 #back_ground .item{
     position: absolute;
@@ -131,14 +157,20 @@ html,body{
         transform: translateY(-1000%) rotate(45deg);
     }
 }
+.textCon{
+	width: 90%;
+    margin:10px auto;
+    position: relative;
+    font-size: 1.5em; 
+}
 	/*打字机-光标闪烁动画*/
 	@-webkit-keyframes blink-caret {
 	  50% {
 	    border-color: transparent;
 	  }
 	}
-	.typerTarget span{
-	  border-right: 1px solid #ffffff;
+	.typerTarget{
+	  border-right: 1px solid #000;
 	  -webkit-animation: blink-caret 0.5s step-end infinite alternate;
 	          animation: blink-caret 0.5s step-end infinite alternate;
 	}
@@ -162,10 +194,21 @@ html,body{
 	</noscript>
 
 	<!--心形背景-->
-	<div id="back_ground"></div>
+	<div id="back_ground" style="display:none"></div>
 	<!--心形-->
-	<div class="heart"><span >陈敬</span></div>
+	<div class="heart" style="display:none"><span>敬敬</span></div>
+	<div class="textCon" >
+		<span id="text-1" class="typerTarget"></span><br>
 
+		<span id="text-2" style="margin: 0 0 0 2em;"></span>
+		<span id="text-3" ></span><br>
+
+		<span id="text-4" style="margin: 0 0 0 2em;"></span><br>
+
+		<span id="text-5"  style="margin: 0 0 0 2em;"></span><br>
+		<span id="text-6" ></span><br>
+		<span id="text-7" ></span>
+    </div>
 	<div class="footer">
         <p  ><!--Minimalist style 极简风格-->
         	© 2016-2020 欢迎光临。保留所有权利。(Welcome to visit. All rights reserved.)
@@ -173,10 +216,7 @@ html,body{
     </div>
 
 	<!--<script src="" type="text/javascript" charset="UTF-8"></script>-->
-	<!--打字机动画特效 js 插件-->
-	<!--<script src="../js/autotyper.min.js" type="text/javascript" charset="UTF-8"></script>-->
-	<!--prism 代码高亮-->
-	<!--<script src="../js/prism/prism.js" type="text/javascript" charset="UTF-8"></script>-->
+	<script src="../js/jquery/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
 	<script type="text/javascript" charset="UTF-8">
 		//心形背景
 		function back_ground_init() {
@@ -201,21 +241,101 @@ html,body{
 		        box.appendChild(ele);
 		    }
 		}
-		window.onload = function(){
-			back_ground_init();//初始化-心形背景
-
+		function auto_init(id,val){
 			//打字配置
 			var options = {
-			  selector: ".typerTarget > span",//目标元素选择器
-			  //charSpeed: 85, //字母输入动画速度
-			  //delay: 2100,//单词/句子输入动画延迟
+			  selector: id,//目标元素选择器
+			  charSpeed: 200, //字母输入动画速度
+			  delay: 2100,//单词/句子输入动画延迟
 			  //loop: true,//如果循环被激活，自动打字将重新开始
 			  //flipflop: true,//如果触发器被激活，输入动画的字母将被一个动画移除
-			  words: ["hello", "world",'autotyperjs 是一款打字机动画特效 js 插件 js']//将自动键入的单词/句子
+			  words: [val]//将自动键入的单词/句子
 			};
 			// start auto typer
-			//var typer = new autoTyper(options);
-			//typer.start();//开始打字
+			var typer = new autoTyper(options);
+			typer.start(options);
+			setTimeout(function(){
+				typer.stop();//结束
+			},val.length*200);
+		}
+		//自动打字机，简版
+		function Typewriter(o,charSpeed,delay,fn){
+			var keys = [],k_index = 0,k_len = 0,k_timer = delay||2100 ,k_,k_o;
+			var word = '',w_index = 0,w_len = 0,w_timer = charSpeed||100;
+			for(var key in o){
+				keys.push(key);
+			}
+			k_len = keys.length;
+			var timeout = function(){
+				setTimeout(function(){
+					if(w_index <=0){
+						k_ = keys[k_index];
+						word = o[k_];
+						w_len = word.length;
+						k_o = $('#'+k_);
+						k_o.addClass('typerTarget');
+					}
+					if(w_index < w_len){
+						k_o.html(word.slice(0,w_index+1))
+						//console.log(k_,k_index,k_len,w_index,w_len,word.slice(0,w_index+1),)
+						w_index ++;
+					}else if(k_index < k_len-1){
+						k_o.removeClass('typerTarget');
+						w_index = 0;
+						k_index ++;
+					}else{
+						k_o.removeClass('typerTarget');
+						console.log('end');
+						fn();
+						return;
+					}
+					timeout();
+				},w_index >= w_len ? k_timer:w_timer);
+			}
+			timeout();
+		}
+		//计时器
+		var arr = "2018-4-17 00:00:00".split(/[- :]/);//改这里
+	    var start_time = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+		function timer_start(){
+		    var duration = parseInt(new Date()- start_time)/1000;
+		    var seconds = parseInt( duration % 60);
+		    if (seconds < 10)
+		        seconds = "0" + seconds;
+		    duration = parseInt(duration / 60);
+		    var minutes = duration % 60;
+		    if (minutes < 10)
+		        minutes = "0" + minutes;
+		    duration = parseInt(duration / 60);
+		    var hours = duration % 24;
+		    if (hours < 10)
+		        hours = "0" + hours;
+		    duration = parseInt(duration / 24);
+		    var days = duration;
+		    return days+' 天 '+ hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
+		}
+		window.onload = function(){
+			var text =`就是你，让我千秋万世地等候，千山万水地追寻，在寂静中欢喜，
+在相守中甜蜜。爱你，就是陪你一路走到底，不离不弃不怀疑，
+一生一世一辈子
+相信上方的计时器,将永远继续下去,直至永远.`
+			$('#back_ground').removeAttr('style');
+			back_ground_init();//初始化-心形背景
+			$('.heart').removeAttr('style');
+			var txts = {
+				'text-1':`Dear ChenJing:`,
+				'text-2':`I have been in love with you for:`,
+				'text-3':timer_start(),
+				'text-4':`宝贝，节日快乐`,
+				'text-5':`只愿执子之手,与子偕老.`,
+				'text-6':`----Only love you, ZhaoYunLiang`,
+				'text-7':`-2020/02/14-`,
+			}
+			Typewriter(txts,100,2000,function(){
+				window.setInterval(function(){
+					$('#text-3').html(timer_start());
+				},1000);
+			})
 			//typer.stop();//结束
 		}
 
