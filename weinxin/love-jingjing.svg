@@ -1,0 +1,16 @@
+<svg width="160" height="150" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="152" width="162" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path stroke="#FFAFCC" id="svg_2" d="m80,38.847458c29.685253,-80.328458 145.993047,0 0,103.279445c-145.993047,-103.279445 -29.685253,-183.607903 0,-103.279445z" stroke-width="1.5" fill="#FFAFCC"/>
+  <text stroke="#FFAFCC" font-style="normal" xml:space="preserve" text-anchor="start" font-family="Euphoria, sans-serif" font-size="43" id="svg_3" y="55.360118" x="23.868673" stroke-opacity="null" stroke-width="0" fill="#ff00ff">陈  敬</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Euphoria, sans-serif" font-size="32" id="svg_4" y="98.860118" x="48.290548" stroke-opacity="null" stroke-width="0" stroke="#FFAFCC" fill="#ff00ff">爱你</text>
+ </g>
+</svg>
