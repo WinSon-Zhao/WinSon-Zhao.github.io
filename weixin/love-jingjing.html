@@ -265,39 +265,33 @@ html,body{
 		function Typewriter(o,charSpeed,delay,fn){
 			var keys = [],k_index = 0,k_len = 0,k_timer = delay||2100 ,k_,k_o;
 			var word = '',w_index = 0,w_len = 0,w_timer = charSpeed||100;
-			var timer ;
 			for(var key in o){
 				keys.push(key);
 			}
 			k_len = keys.length;
-			var timeout = function(){
-				timer = setTimeout(function(){
-					if(w_index <=0){
-						k_ = keys[k_index];
-						word = o[k_];
-						w_len = word.length;
-						k_o = $('#'+k_);
-						k_o.addClass('typerTarget');
-					}
-					if(w_index < w_len){
-						k_o.html(word.slice(0,w_index+1))
-						//console.log(k_,k_index,k_len,w_index,w_len,word.slice(0,w_index+1),)
-						w_index ++;
-					}else if(k_index < k_len-1){
-						k_o.removeClass('typerTarget');
-						w_index = 0;
-						k_index ++;
-					}else{
-						k_o.removeClass('typerTarget');
-						console.log('end');
-						fn();
-						return;
-					}
+			var timer = setInterval(function(){
+				if(w_index <=0){
+					k_ = keys[k_index];
+					word = o[k_];
+					w_len = word.length;
+					k_o = $('#'+k_);
+					k_o.addClass('typerTarget');
+				}
+				if(w_index < w_len){
+					k_o.html(word.slice(0,w_index+1))
+					//console.log(k_,k_index,k_len,w_index,w_len,word.slice(0,w_index+1),)
+					w_index ++;
+				}else if(k_index < k_len-1){
+					k_o.removeClass('typerTarget');
+					w_index = 0;
+					k_index ++;
+				}else{
+					k_o.removeClass('typerTarget');
+					console.log('end');
 					if(timer){window.clearTimeout(timer)}
-					timeout();
-				},w_index >= w_len ? k_timer:w_timer);
-			}
-			timeout();
+					fn();
+				}
+			},w_timer);
 		}
 		//计时器
 		var arr = "2018-4-17 00:00:00".split(/[- :]/);//改这里
@@ -339,7 +333,7 @@ html,body{
 				'text-9':`----Only love you, ZhaoYunLiang`,
 				'text-10':`-2020/02/14-`,
 			}
-			Typewriter(txts,60,1000,function(){
+			Typewriter(txts,100,1000,function(){
 				window.setInterval(function(){
 					$('#text-3').html(timer_start());
 				},1000);
