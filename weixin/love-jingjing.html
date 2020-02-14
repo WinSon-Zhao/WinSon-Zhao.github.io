@@ -265,12 +265,13 @@ html,body{
 		function Typewriter(o,charSpeed,delay,fn){
 			var keys = [],k_index = 0,k_len = 0,k_timer = delay||2100 ,k_,k_o;
 			var word = '',w_index = 0,w_len = 0,w_timer = charSpeed||100;
+			var timer ;
 			for(var key in o){
 				keys.push(key);
 			}
 			k_len = keys.length;
 			var timeout = function(){
-				setTimeout(function(){
+				timer = setTimeout(function(){
 					if(w_index <=0){
 						k_ = keys[k_index];
 						word = o[k_];
@@ -294,6 +295,7 @@ html,body{
 					}
 					timeout();
 				},w_index >= w_len ? k_timer:w_timer);
+				if(timer){timer.clearTimeOut()}
 			}
 			timeout();
 		}
