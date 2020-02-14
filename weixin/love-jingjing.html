@@ -8,19 +8,140 @@
     <meta property="og:site_name" content="WinSonZhao ©博客(BLOG)-">
     <title>WinSonZhao ©博客(BLOG)-情人节</title>
 	<!--<link rel="stylesheet" type="text/css" charset="UTF-8" id="global_link" href="css/theme_1.css">-->
-	<style type="text/css" charset="UTF-8" id="css_change">
-	/*主题样式*/
-
-	.bef_color{
-		color: #ffffff;/* 颜色-1 */
+	<!--prism 代码高亮-->
+	<!--<link rel="stylesheet" type="text/css" charset="UTF-8" href="../js/prism/prism.css">-->
+<style type="text/css" charset="UTF-8">
+/*页面样式*/
+/*背景设置---*/
+*{
+    margin: 0;
+    padding:0;
+}
+html,body{
+    width:100%;
+    height:100%;
+    /*text-align: center;*/
+    background-color: #ffc5b3;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -o-transform:translate(-50%,-50%);
+  	background-image: radial-gradient(#ffeded, #ffc7c7);
+}
+/*心形*/
+.heart{
+    width:80px;
+    height:80px;
+    background-color:#cc2a5d;
+    margin:200px auto;
+    position: relative;
+    transform: rotate(45deg);
+    animation: heart 1s ease-in infinite;
+}
+.heart::before,
+.heart::after{
+    content:'';
+    width:100%;
+    height:100%;
+    background-color:#cc2a5d;
+    border-radius: 50%;
+}
+.heart::before{
+    position: absolute;
+    top:0;
+    left:0;
+    transform: translateX(-50%);
+}
+.heart::after{
+    position: absolute;
+    top:0;
+    left:0;
+    transform: translateY(-50%);
+}
+/*心中文字*/
+.heart span{
+	font-size: 2em;
+	z-index: 9999;
+	position: absolute;
+	transform: rotate(-45deg);
+}
+@keyframes heart{
+    0%{
+        transform: scale(0.8) rotate(45deg);
+        opacity: 0.8;
+    }
+    50%{
+        transform: scale(1) rotate(45deg);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(0.8) rotate(45deg);
+        opacity: 0.8;
+    }
+}
+/*心形背景*/
+#back_ground{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width:700px;
+    height:60px;
+    margin:50px auto;
+}
+#back_ground .item{
+    position: absolute;
+    opacity: 0;
+    background-color:#cc2a5d;
+    transform: rotate(45deg);
+    animation: hearts 3s ease-in infinite;
+}
+#back_ground .item::before,
+#back_ground .item::after{
+    content:'';
+    width:100%;
+    height:100%;
+    background-color:#cc2a5d;
+    position: absolute;
+    top:0;
+    left:0;
+    border-radius: 50%;
+}
+#back_ground .item::before{
+    transform: translateX(-50%);
+}
+#back_ground .item::after{
+    transform: translateY(-50%);
+}
+@keyframes hearts{
+    0%{
+        opacity: 0;
+        transform: translateY(0%) rotate(45deg);
+    }
+    20%{
+        opacity: 0.8;
+        transform: translateY(-20%) rotate(45deg);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-1000%) rotate(45deg);
+    }
+}
+	/*打字机-光标闪烁动画*/
+	@-webkit-keyframes blink-caret {
+	  50% {
+	    border-color: transparent;
+	  }
 	}
-	.aft_color{
-		background: #000000;/* 颜色-2 */
+	.typerTarget span{
+	  border-right: 1px solid #ffffff;
+	  -webkit-animation: blink-caret 0.5s step-end infinite alternate;
+	          animation: blink-caret 0.5s step-end infinite alternate;
 	}
-	</style>
-	<style type="text/css" charset="UTF-8">
-	/*页面样式*/
-
 	/* 底部信息- */
 	.footer{
 		text-align: center;
@@ -31,25 +152,72 @@
 	.footer p{
 		font-size: 0.9em;
 		margin: 0;
+		color: #e91e63
 	}
 	</style>
 </head>
-<body class="aft_color">
+<body>
 	<noscript>
 		<h3>您的浏览器不支持/未启用 JavaScript!(JavaScript is not supported / enabled in your browser)!</h3>
 	</noscript>
 
-	<h1 class="bef_color">情人节</h1>
-	<img src="love-jingjing.png" height="160" width="150">
+	<!--心形背景-->
+	<div id="back_ground"></div>
+	<!--心形-->
+	<div class="heart"><span >陈敬</span></div>
 
 	<div class="footer">
-        <p  class="bef_color" ><!--Minimalist style 极简风格-->
+        <p  ><!--Minimalist style 极简风格-->
         	© 2016-2020 欢迎光临。保留所有权利。(Welcome to visit. All rights reserved.)
         </p>
     </div>
 
 	<!--<script src="" type="text/javascript" charset="UTF-8"></script>-->
+	<!--打字机动画特效 js 插件-->
+	<!--<script src="../js/autotyper.min.js" type="text/javascript" charset="UTF-8"></script>-->
+	<!--prism 代码高亮-->
+	<!--<script src="../js/prism/prism.js" type="text/javascript" charset="UTF-8"></script>-->
 	<script type="text/javascript" charset="UTF-8">
+		//心形背景
+		function back_ground_init() {
+			var ran =function (min, max) {
+			    min = parseInt(min);
+			    max = parseInt(max);
+			    return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+			var box = document.getElementById('back_ground');
+			box.innerHTML='';//清空
+		    var width = box.offsetWidth;
+		    var count = parseInt(width / 100 * 5);
+		    for (var i = 0; i < count; i++) {
+		        var size = parseInt(ran(60, 120) / 10);
+		        var ele = document.createElement('div');
+		        ele.classList.add('item');
+		        ele.style.width = size + 'px';
+		        ele.style.height = size + 'px';
+		        ele.style.left = ran(0, 95) + '%';
+		        ele.style.top = ran(10, 90) + '%';
+		        ele.style.animationDelay = ran(0, 30) / 10 + 's';
+		        box.appendChild(ele);
+		    }
+		}
+		window.onload = function(){
+			back_ground_init();//初始化-心形背景
+
+			//打字配置
+			var options = {
+			  selector: ".typerTarget > span",//目标元素选择器
+			  //charSpeed: 85, //字母输入动画速度
+			  //delay: 2100,//单词/句子输入动画延迟
+			  //loop: true,//如果循环被激活，自动打字将重新开始
+			  //flipflop: true,//如果触发器被激活，输入动画的字母将被一个动画移除
+			  words: ["hello", "world",'autotyperjs 是一款打字机动画特效 js 插件 js']//将自动键入的单词/句子
+			};
+			// start auto typer
+			//var typer = new autoTyper(options);
+			//typer.start();//开始打字
+			//typer.stop();//结束
+		}
 
 	    //当前页面存在iframe中，强制跳转
 	    if(window.self !== window.top || top.location.href !== self.location.href){
