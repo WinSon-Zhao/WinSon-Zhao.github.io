@@ -312,6 +312,7 @@
 	        }
 
 	        var browser_info = g_obj.browser.info('浏览器(Browser Name) : ',navigator.appName);
+	        browser_info += g_obj.browser.info('本页链接(Page Url) : ',location.href);
 	        browser_info += g_obj.browser.info('浏览器版本(Browser Version) : ',navigator.appVersion);
 	        browser_info += g_obj.browser.info('浏览器代码名(Browser Code Name) :',navigator.appCodeName);
 	        browser_info += g_obj.browser.info('平台(Platform) : ',navigator.platform);
