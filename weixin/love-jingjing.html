@@ -18,25 +18,6 @@
   font-weight: 400;
   src: local('Rye Regular'), local('Rye-Regular'), url('../fonts/text1.ttf') format('woff');
 }
-
-@font-face {
-  font-family: 'Rye';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Rye Regular'), local('Rye-Regular'), url('../fonts/Clockopia.ttf') format('woff');
-}
-@font-face {
-  font-family: 'Monda_no';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Monda'), local('Monda-Regular'), url('../fonts/Monda-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Monda_bo';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Monda Bold'), local('Monda-Bold'), url('../fonts/Monda-Bold.ttf') format('truetype');
-}
 /*背景设置---*/
 *{
     margin: 0;
@@ -199,18 +180,15 @@ html,body{
 	<div class="heart" style="display:none"><span>敬敬</span></div>
 	<div class="textCon" >
 		<span id="text-1" class="typerTarget"></span><br>
-
 		<span id="text-2" style="margin: 0 0 0 2em;"></span><br>
-		<span id="text-3" ></span><br>
-
 		<span id="text-4" style="margin: 0 0 0 2em;"></span><br>
-
 		<span id="text-5"  style="margin: 0 0 0 2em;"></span><br>
 		<span id="text-6"  style="margin: 0 0 0 2em;"></span><br>
 		<span id="text-7"  style="margin: 0 0 0 2em;"></span><br>
 		<span id="text-8"  style="margin: 0 0 0 2em;"></span><br>
 		<span id="text-9" ></span><br>
-		<span id="text-10" ></span>
+		<span id="text-10" ></span><br>
+		<span id="text-3" ></span>
     </div>
 	<div class="footer">
         <p  ><!--Minimalist style 极简风格-->
@@ -243,23 +221,6 @@ html,body{
 		        ele.style.animationDelay = ran(0, 30) / 10 + 's';
 		        box.appendChild(ele);
 		    }
-		}
-		function auto_init(id,val){
-			//打字配置
-			var options = {
-			  selector: id,//目标元素选择器
-			  charSpeed: 200, //字母输入动画速度
-			  delay: 2100,//单词/句子输入动画延迟
-			  //loop: true,//如果循环被激活，自动打字将重新开始
-			  //flipflop: true,//如果触发器被激活，输入动画的字母将被一个动画移除
-			  words: [val]//将自动键入的单词/句子
-			};
-			// start auto typer
-			var typer = new autoTyper(options);
-			typer.start(options);
-			setTimeout(function(){
-				typer.stop();//结束
-			},val.length*200);
 		}
 		//自动打字机，简版
 		function Typewriter(o,charSpeed,delay,fn){
@@ -314,31 +275,26 @@ html,body{
 		    return days+' 天 '+ hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
 		}
 		window.onload = function(){
-			var text =`就是你，让我千秋万世地等候，千山万水地追寻，在寂静中欢喜，
-在相守中甜蜜。爱你，就是陪你一路走到底，不离不弃不怀疑，
-一生一世一辈子
-相信上方的计时器,将永远继续下去,直至永远.`
-			$('#back_ground').removeAttr('style');
-			back_ground_init();//初始化-心形背景
 			$('.heart').removeAttr('style');
 			var txts = {
 				'text-1':`Dear ChenJing:`,
 				'text-2':` love me little and love me long. 不求情意绵绵，但求天长地久。`,
-				'text-3':timer_start(),
 				'text-4':`祝亲爱的宝贝，节日快乐！！！`,
 				'text-5':`很抱歉，这个礼物有点迟到。`,
 				'text-6':`这个页面是我这两天才想起来弄得，可能有点不好看。`,
-				'text-7':`上方的计时器,将永远继续下去,直至永远。`,
+				'text-7':`结尾的计时器,将永远继续下去,直至永远。`,
 				'text-8':`我愿执子之手,与子偕老。爱你一生一世。`,
 				'text-9':`----Only love you, ZhaoYunLiang`,
 				'text-10':`-2020/02/14-`,
+				'text-3':timer_start(),
 			}
 			Typewriter(txts,100,1000,function(){
 				window.setInterval(function(){
 					$('#text-3').html(timer_start());
 				},1000);
+				$('#back_ground').removeAttr('style');//最后显示背景
+				back_ground_init();//初始化-心形背景
 			})
-			//typer.stop();//结束
 		}
 
 	    //当前页面存在iframe中，强制跳转
