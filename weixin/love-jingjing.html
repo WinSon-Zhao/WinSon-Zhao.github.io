@@ -91,53 +91,6 @@ html,body{
     }
 }
 /*心形背景*/
-#back_ground{
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    width:700px;
-    height:10px;
-    margin:0px auto;
-}
-#back_ground .item{
-    position: absolute;
-    opacity: 0;
-    background-color:#cc2a5d;
-    transform: rotate(45deg);
-    animation: hearts 3s ease-in infinite;
-}
-#back_ground .item::before,
-#back_ground .item::after{
-    content:'';
-    width:100%;
-    height:100%;
-    background-color:#cc2a5d;
-    position: absolute;
-    top:0;
-    left:0;
-    border-radius: 50%;
-}
-#back_ground .item::before{
-    transform: translateX(-50%);
-}
-#back_ground .item::after{
-    transform: translateY(-50%);
-}
-@keyframes hearts{
-    0%{
-        opacity: 0;
-        transform: translateY(0%) rotate(45deg);
-    }
-    20%{
-        opacity: 0.8;
-        transform: translateY(-20%) rotate(45deg);
-    }
-    100%{
-        opacity: 0;
-        transform: translateY(-1000%) rotate(45deg);
-    }
-}
 .textCon{
 	width: 90%;
     margin:10px auto;
@@ -175,7 +128,6 @@ html,body{
 	</noscript>
 
 	<!--心形背景-->
-	<div id="back_ground" style="display:none"></div>
 	<!--心形-->
 	<div class="heart" style="display:none"><span>敬敬</span></div>
 	<div class="textCon" >
@@ -199,29 +151,6 @@ html,body{
 	<!--<script src="" type="text/javascript" charset="UTF-8"></script>-->
 	<script src="../js/jquery/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
 	<script type="text/javascript" charset="UTF-8">
-		//心形背景
-		function back_ground_init() {
-			var ran =function (min, max) {
-			    min = parseInt(min);
-			    max = parseInt(max);
-			    return Math.floor(Math.random() * (max - min + 1)) + min;
-			}
-			var box = document.getElementById('back_ground');
-			box.innerHTML='';//清空
-		    var width = box.offsetWidth;
-		    var count = parseInt(width / 100 * 5);
-		    for (var i = 0; i < count; i++) {
-		        var size = parseInt(ran(60, 120) / 10);
-		        var ele = document.createElement('div');
-		        ele.classList.add('item');
-		        ele.style.width = size + 'px';
-		        ele.style.height = size + 'px';
-		        ele.style.left = ran(0, 95) + '%';
-		        ele.style.top = ran(10, 90) + '%';
-		        ele.style.animationDelay = ran(0, 30) / 10 + 's';
-		        box.appendChild(ele);
-		    }
-		}
 		//自动打字机，简版
 		function Typewriter(o,charSpeed,delay,fn){
 			var keys = [],k_index = 0,k_len = 0,k_timer = delay||2100 ,k_,k_o;
@@ -288,12 +217,10 @@ html,body{
 				'text-10':`-2020/02/14-`,
 				'text-3':timer_start(),
 			}
-			Typewriter(txts,100,1000,function(){
+			Typewriter(txts,5,1000,function(){
 				window.setInterval(function(){
 					$('#text-3').html(timer_start());
 				},1000);
-				$('#back_ground').removeAttr('style');//最后显示背景
-				back_ground_init();//初始化-心形背景
 			})
 		}
 
