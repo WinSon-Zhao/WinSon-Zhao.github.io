@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -13,31 +14,33 @@
 <style type="text/css" charset="UTF-8">
 /*页面样式*/
 @font-face {
-  font-family: 'Regular';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Rye Regular'), local('Rye-Regular'), url('../fonts/RyeRegular.ttf') format('woff');
+	font-family: 'Regular';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Rye Regular'), local('Rye-Regular'), url('../fonts/RyeRegular.ttf') format('woff');
 }
 /*背景设置---*/
 *{
     margin: 0;
     padding:0;
 }
-html,body{
+body{
     width:100%;
-    height:100%;
-    /*text-align: center;*/
     background-color: #ffc5b3;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    -webkit-transform:translate(-50%,-50%);
-    -ms-transform:translate(-50%,-50%);
-    -moz-transform:translate(-50%,-50%);
-    -o-transform:translate(-50%,-50%);
-  	background-image: radial-gradient(#ffeded, #ffc7c7);
+	background:url('../img/jinian.jpg') no-repeat;
+	background-size: cover;
+	background-repeat: repeat-x;
     font-family: "Regular", Georgia, sans-serif;
+}
+@media screen and (max-aspect-ratio:4/3){/*页面可见宽度与高度比率*/
+	body{
+		width:100%;
+		background-color: #ffc5b3;
+		background:url('../img/jinian-shu.png') no-repeat;
+		background-size: cover;
+		background-repeat: repeat-y;
+		font-family: "Regular", Georgia, sans-serif;
+	}
 }
 /*心形*/
 .heart{
@@ -95,32 +98,28 @@ html,body{
 	width: 90%;
     margin:10px auto;
     position: relative;
-    font-size: 1.5em; 
+    font-size: 2em;
+	color: #f44336;
+    background: rgba(169, 220, 166, 0.5);
 }
-	/*打字机-光标闪烁动画*/
-	@-webkit-keyframes blink-caret {
-	  50% {
-	    border-color: transparent;
-	  }
-	}
-	.typerTarget{
-	  border-right: 1px solid #000;
-	  -webkit-animation: blink-caret 0.5s step-end infinite alternate;
-	          animation: blink-caret 0.5s step-end infinite alternate;
-	}
-	/* 底部信息- */
-	.footer{
-		text-align: center;
-		position: absolute;
-		bottom: 0;
-		width: 98%;
-	}
-	.footer p{
-		font-size: 0.9em;
-		margin: 0;
-		color: #e91e63
-	}
-	</style>
+/*打字机-光标闪烁动画*/
+.typerTarget{
+	border-right: 1px solid #000;
+	animation: blink-caret 1s step-end infinite alternate;
+}
+/* 底部信息- */
+.footer{
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 98%;
+}
+.footer p{
+	font-size: 0.9em;
+	margin: 0;
+	color: #e91e63
+}
+</style>
 </head>
 <body>
 	<noscript>
@@ -128,83 +127,58 @@ html,body{
 	</noscript>
 
 	<!--心形背景-->
+	<canvas style="display: block;position:absolute;" width="10" height="10">Canvas is not supported in your browser</canvas>
 	<!--心形-->
 	<div class="heart" style="display:none"><span>敬敬</span></div>
 	<div class="textCon" >
-		<span id="text-1" class="typerTarget"></span><br>
-		<span id="text-2" style="margin: 0 0 0 2em;"></span><br>
-		<span id="text-4" style="margin: 0 0 0 2em;"></span><br>
-		<span id="text-5"  style="margin: 0 0 0 2em;"></span><br>
-		<span id="text-6"  style="margin: 0 0 0 2em;"></span><br>
-		<span id="text-7"  style="margin: 0 0 0 2em;"></span><br>
-		<span id="text-8"  style="margin: 0 0 0 2em;"></span><br>
-		<span id="text-9" ></span><br>
-		<span id="text-10" ></span><br>
-		<span id="text-3" ></span>
+		<div id="text_title"> </div>
+		<div id="text_content" style="margin-left: 2em;">
+		</div>
+		<div id="text_bottom"> </div>
     </div>
 	<div class="footer">
         <p  ><!--Minimalist style 极简风格-->
-        	© 2016-2020 欢迎光临。保留所有权利。(Welcome to visit. All rights reserved.)
+			© 2016-2020 欢迎光临。保留所有权利。(Welcome to visit. All rights reserved.)
         </p>
     </div>
+	<img id="heart_back" style="display: none;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAR0SURBVGhD7Zr7axVHFMdn9pLkCha5uTfY4hP8JaVF8B9o6Q9J1VSjIlgRgrSQllalP4j0QRGlxZ8KRX9RtIKCUFoNUQSxKMQ8UGkL/SGlrVhFjSTGexNsoYmtd06/Z/bszeM+9j7WdLf4IZszc7I7u985Z3Zmd6P+L2ixvpjFi+fpx4/fUERtpNQyuFZim2//SHRPaT0I26/q6r51RkbuWH8RcHyMkslXccxGVF/Etgqb25ZSo2hn0LaXzXY54+NXxV8SXyGmqWmFMmYnip1a63mutzRE1KeJ9uuxsUvisnBnqIkJbusDXOjzOHnJ80NwFmYE+x5QDQ3HnaGhCfcv+ZRuKJn8kLT+DDvFxFU2uAgD04NO6HDGxu6bxsZWXNBJdMZCd4/KQHsc9a3Ow4cD4ppBQSEmmXwOB51GscWv1/xAdNIwXRDQ6Xqqx3YO0R4nk/lCXDnyLtKKUOo8TvyK6wkXEEPo5E8QmQPisjhip9D6TFhFMDZDiD43qdTb4rLMEIJo7MaOLVINLSLmIMYd3/EsudSiRGIpOc5viEZcXKEH4+8ixstqLuciQrHYR1ESYdG6FdPDlBB7f1fqLS5HCUmxd7nsRmRysh3OeluOGkSr+U7rpVab2MiB4dAA85onpFlsVGl2hRBFW4jWL7lCtI7m+Jgi5qUWZv5IYzwht8RGE6Lb3hj52dqoovWv3hgp6yksjNilvTF9npCz1hFNfsCD25AVgrX97zA/cjmCnOJf3mBn9oqNDMiiIRWPH+VyToiTTl/AsviCVEOPfVJUap/3QmJ6RJSur++AmGGphhuir9H5x6Q2S8jwcBo7bILUP8QVSnB912HecWsuM4QwuANcg9mGnUN5F0PG3FaO044nwz/FZckTwiBk52Fqfn0TNBAxChGtzujoA3HlKCiEgZivEJVPseEnFDzC1oap4qZbnUnu5UMxTCp1CDvtkOp/AnryH4RjDdLpsrjy8BWCRmKUSp3GjhvENeeQMdsxdk9ItSBFU8sDArI6nd6C/OwV15zBaQ12+4lgfIUwEPO3fvKkHQ0PimtuIPqy0HveQvim1nRMIrFExWIDOGiJuJ4aiMQ3ELFFqr5UJISxrykdpx8HNoorcBD5HqTz65wJ4vKlrNSaDvL1F6z/16LH/hJXoEDE9wjH+kpEMBULYSDmOk4U+OyP9u4i2utmz9rlUJUQRmcy3ei593Fy/NQOIswfhFoKzdrlULUQBj13mL8VBiDmEZSsw2rihtQrpuLBXgiTTB7RVX5aQw8YPGqvwdLjO3FVRU0R8UCavYcLOifVSumsVQQTjBD+jByPv4k87xeXL5yOpPXHvDgVV00EkloetGBBgurqeMLMfRIrBoQcgohdUq2ZQIUwELMcYnjCXCSuPCCiGyL4vx4CI3AhDJYyL2MpcwWN583+SL9ejCn+fl/RhOdHIGNkNs74+CDuYu246ElxWVD/iRefQYt46pimps14MMvieYZg72KdVjTdQg8E7MKWmf5NPLJAyAtSfEZplPoXFdSVjQlID3EAAAAASUVORK5CYII=" />
 
 	<!--<script src="" type="text/javascript" charset="UTF-8"></script>-->
-	<script src="../js/jquery/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="../js/jquery/jquery.min.js"></script>
+	<script src="../js/chenjing/yunTyper.js"></script>
+	<script src="../js/chenjing/heartBack.js"></script>
 	<script type="text/javascript" charset="UTF-8">
-		//自动打字机，简版
-		function Typewriter(o,charSpeed,delay,fn){
-			var keys = [],k_index = 0,k_len = 0,k_timer = delay||2100 ,k_,k_o;
-			var word = '',w_index = 0,w_len = 0,w_timer = charSpeed||100;
-			for(var key in o){
-				keys.push(key);
-			}
-			k_len = keys.length;
-			var timer = setInterval(function(){
-				if(w_index <=0){
-					k_ = keys[k_index];
-					word = o[k_];
-					w_len = word.length;
-					k_o = $('#'+k_);
-					k_o.addClass('typerTarget');
-				}
-				if(w_index < w_len){
-					k_o.html(word.slice(0,w_index+1))
-					//console.log(k_,k_index,k_len,w_index,w_len,word.slice(0,w_index+1),)
-					w_index ++;
-				}else if(k_index < k_len-1){
-					k_o.removeClass('typerTarget');
-					w_index = 0;
-					k_index ++;
-				}else{
-					k_o.removeClass('typerTarget');
-					console.log('end');
-					if(timer){window.clearTimeout(timer)}
-					fn();
-				}
-			},w_timer);
-		}
 		//计时器
 		var arr = "2018-4-17 00:00:00".split(/[- :]/);//改这里
-	    var start_time = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+		var start_time = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
 		function timer_start(){
-		    var duration = parseInt(new Date()- start_time)/1000;
-		    var seconds = parseInt( duration % 60);
-		    if (seconds < 10)
-		        seconds = "0" + seconds;
-		    duration = parseInt(duration / 60);
-		    var minutes = duration % 60;
-		    if (minutes < 10)
-		        minutes = "0" + minutes;
-		    duration = parseInt(duration / 60);
-		    var hours = duration % 24;
-		    if (hours < 10)
-		        hours = "0" + hours;
-		    duration = parseInt(duration / 24);
-		    var days = duration;
-		    return days+' 天 '+ hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
+			var duration = parseInt(new Date()- start_time)/1000;
+			var seconds = parseInt( duration % 60);
+			if (seconds < 10)
+				seconds = "0" + seconds;
+			duration = parseInt(duration / 60);
+			var minutes = duration % 60;
+			if (minutes < 10)
+				minutes = "0" + minutes;
+			duration = parseInt(duration / 60);
+			var hours = duration % 24;
+			if (hours < 10)
+				hours = "0" + hours;
+			duration = parseInt(duration / 24);
+			var days = duration;
+			return days+' 天 '+ hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
+		}
+		function typer_(id,text,fn){
+			$(id).yunTyper({
+				text : text,
+				loop : false,
+				color : "#f44336",//字体和光标颜色
+				speed : 100,//打字速度
+				sleep : 1000,//回退停顿时间
+				endFn : fn
+			});
 		}
 		window.onload = function(){
-			$('.heart').removeAttr('style');
 			var txts = {
 				'text-1':`Dear ChenJing:`,
 				'text-2':` love me little and love me long. 不求情意绵绵，但求天长地久。`,
@@ -217,15 +191,46 @@ html,body{
 				'text-10':`-2020/02/14-`,
 				'text-3':timer_start(),
 			}
-			Typewriter(txts,5,1000,function(){
+			var txt = [
+				`love me little and love me long. 不求情意绵绵，但求天长地久。`,
+				'祝亲爱的宝贝，节日快乐！！！',
+				'很抱歉，这个礼物有点迟到。',
+				'这个页面是我这两天才想起来弄得，可能有点不好看。',
+				'结尾的计时器,将永远继续下去,直至永远。',
+				'我愿执子之手,与子偕老。爱你一生一世。',
+				'----Only love you, ZhaoYunLiang',
+				'----2020/02/14-----',
+			];
+			typer_('#text_title',['Dear ChenJing:'],function(){
+				typer_('#text_content',txt,function(){
+					typer_('#text_bottom',[timer_start()],function(){
+						window.setInterval(function(){
+							$('#text_bottom span').html(timer_start());
+						},1000);
+						var heart_ = new heartBack({
+							selector : 'canvas',//默认
+							aim_selector : '#heart_back',//漂浮的元素
+							aim_width : 50,//元素宽
+							aim_height : 50,//元素高
+							aim_count : 10,//元素个数
+							is_scale : true ,//是否缩放
+							is_rotate : false ,//是否旋转 
+							up_down : false //方向，上下
+						});
+						heart_.start();
+						$('.heart').removeAttr('style');
+					})
+				})
+			})
+			/* Typewriter(txts,50,1000,function(){
 				window.setInterval(function(){
 					$('#text-3').html(timer_start());
 				},1000);
-			})
+			}) */
 		}
 
 	    //当前页面存在iframe中，强制跳转
-	    if(window.self !== window.top || top.location.href !== self.location.href){
+		if(window.self !== window.top || top.location.href !== self.location.href){
 		//    top.location.href = self.location.href;
 			alert('本页面被嵌套在iframe中(This page is nested in iframe)!');
 		}
