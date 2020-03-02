@@ -1,0 +1,236 @@
+/*页面总体框架响应式样式*/
+*{
+	margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+}
+/* reset 
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+{
+	font:inherit;
+}*/
+/*end reset*/
+/* 父元素设置flex，然后布局方向为主轴从上到下，那么header和footer就会在最上边和最下边 */
+html,body{
+	height: 100%;
+	margin: 0;
+	/* 不设置100%，高度撑不开 */
+}
+body{
+	font-weight: 600;
+	font-size: 16px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
+}
+
+header,footer{
+	position: fixed;
+	border:1px groove;
+	z-index: 9;
+}
+header{
+	top: 0px;
+	width: 250px;
+}
+footer{
+	bottom: 0px;
+	width: 100%;
+	font-size: 0.8em;
+}
+footer div{
+	display: contents;
+}
+article{
+	height: 90%;
+	padding: 10px 0px;
+	flex: 1;
+}
+.a_none a{
+	text-decoration: none;
+}
+.ul_display li{
+	display: inline-block;
+	margin: 0.5em 0.1em;
+}
+.ul_display a{
+	padding: 2px;
+	border: 1px solid;
+	border-radius: 5px;
+	opacity: 0.6;
+	background-color: #faffae;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+header div{
+	margin: 10px 0px;
+}
+/*内容部分*/
+#article_left{
+	width: 250px;
+	position: fixed;
+	overflow: none;
+	top: 220px;
+	bottom: 50px;
+}
+#left_list{
+	width: 95%;
+	height: 89%;
+	overflow-y: auto;
+	border: 1px groove;
+	padding: 20px 5px;
+}
+#left_list li{
+	padding: 0.5em 0px;
+	border-bottom: 1px groove;
+}
+#left_list a{
+	display: block;
+}
+#article_main{
+	margin-left: 251px;
+	height: 80%;
+	padding: 20px;
+}
+#article_right{
+	display: none;
+	position: fixed;
+	right: 10px;
+	border: 1px groove;
+	bottom: 170px;
+	overflow-y: auto;
+	padding: 15px;
+	max-height: 60%;
+	width: 25%;
+}
+
+#article_main div,y_div{
+	display: block;
+	text-align: left;
+	padding: 0.4em;
+}
+#article_main ol,ul,p{
+	text-align: left;
+}
+#article_main em,strong{
+	margin: 0em 0.5em;
+    opacity: 0.75;
+}
+#article_main h1,h2,h3,h4,h5,h6,ul,ol,p{
+	margin-bottom: 1em;
+}
+#article_main blockquote{
+	border-left: 0.6em solid;
+    padding-left: 1em;
+    opacity: 0.8;
+}
+y_context a{
+	text-decoration: none;
+	display: inline-block;
+	border: 1px solid;
+	border-radius: 5px;
+	background-color: #ddd;
+	padding: 0.2em 1em;
+	margin: 0em 0.5em;
+}
+/*两侧小标签*/
+.common_small_label{
+	cursor: pointer;
+	padding: 5px;
+	position: fixed;
+	line-height: 25px;
+	height: 30px;
+	width: 30px;
+	z-index: 99;
+	text-align: center;
+	border-radius: 5px;
+}
+.common_small_label a{
+	text-decoration:none;
+	font-size: 2em;
+}
+#common_small_toTop{
+	bottom: 25px;
+	right: 60px;
+}
+#common_small_toHome{
+	bottom: 70px;
+	right: 60px;
+}
+#common_small_toLeft{
+	display: none;
+}
+#common_small_toRight{
+	bottom: 115px;
+	right: 60px;
+}
+
+@media only screen and (max-width: 980px) {
+	body{
+		font-size: 32px;
+	}
+	header,footer{
+		position: inherit;
+	}
+	article{
+		padding: 5px;
+	}
+	header{
+		width: 100%;
+	}
+	article{
+		height: auto;
+	}
+	footer{
+		width: 100%;
+	}
+	footer div{
+		display: block;
+	}
+	#article_left{
+		width: 99%;
+		bottom: 2px;
+		top: 2px;
+		position: fixed;
+		display: none;
+		z-index: 200;
+	}
+	#left_list{
+		width: 80%;
+		height: 80%;
+		margin-top: 15%;
+		padding: 1em 0em;
+	}
+	#article_main{
+		margin-left: 50px;
+		height: 100%;
+	}
+	#article_right{
+		bottom: 400px;
+		width: 50%;
+	}
+	.common_small_label{
+		padding: 10px;
+		line-height: 45px;
+		height: 60px;
+		width: 50px;
+	}
+	.common_small_label a{
+		font-size: 1.5em;
+	}
+	#common_small_toTop{
+		bottom: 100px;
+	}
+	#common_small_toHome{
+		bottom: 200px;
+	}
+	#common_small_toRight{
+		bottom: 300px;
+	}
+	#common_small_toLeft{
+		display: block;
+		left: 20px;
+		bottom: 100px;
+	}
+}
