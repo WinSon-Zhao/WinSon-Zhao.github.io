@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
     <meta property="og:title" content="博客页">
-    <meta property="og:site_name" content="WinSonZhao ©博客(BLOG)">
-    <title>WinSonZhao ©博客(BLOG)-博客页</title>
+    <meta property="og:site_name" content="WinSonZhao ©博客(BLOG)关于我">
+    <title>WinSonZhao ©博客(BLOG)-博客页-关于我</title>
 	<!--<link rel="stylesheet" type="text/css" charset="UTF-8" id="global_link" href="css/theme_1.css">-->
 	<link rel="stylesheet" type="text/css" charset="UTF-8" href="/css/topFloor.css?">
 	<style type="text/css" charset="UTF-8" id="css_change">
@@ -47,11 +47,7 @@ window.onload = function(){
 	yun.init_click();
 	yun.init_right();
 	yun.tree('#article_right',[
-		{'name':'简述(sketch)', 'id':'-sketch-'},
-		{'name':'计划(plan)', 'id':'-plan-'},
-		{'name':'列表(list)', 'id':'-list-'},
-		{'name':'脚本(script)', 'id':'-script-'},
-		{'name':'其他(other)', 'id':'-other-'}
+		{'name':'关于我(sketch)', 'id':'-aboutME-'}
 	])
 	yun.ajaxTXT('README.md',function(status,res){
 		console.log(status,res)
