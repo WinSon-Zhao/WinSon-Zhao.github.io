@@ -156,7 +156,7 @@ g_.init_top = function(){
 g_.init_header = function(){
 	var header = g_.createEl('header');//头部
 	header.innerHTML = g_.heredoc(function(){/*!
-	<div><img style="background-color: #9e9e9e;width: 80px;border-radius: 15px;" src="img/favicon.png"></div>
+	<div><img style="background-color: #9e9e9e;width: 80px;border-radius: 15px;" src="/img/favicon.png"></div>
 	<div><a class="a_none" href="/">WinSonZhao ©博客(BLOG)</a></div>
 	<hr>
 	<div>
@@ -267,7 +267,8 @@ g_.init_blog = function(){
 	g_.init_floating();
   g_.init_left();
   g_.add_left([
-		{'name':'首页(Home)','url':'/'},
+		{'name':'欢迎页(Index)','url':'/'},
+		{'name':'首页(Home)','url':'/blog.html'},
 		{'name':'关于(About)','url':'/_about'}
 	]);
 }
