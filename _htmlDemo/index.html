@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+    <meta property="og:title" content="页面示例">
+    <meta property="og:site_name" content="WinSonZhao ©博客(BLOG)页面示例">
+    <title>WinSonZhao ©博客(BLOG)-页面示例</title>
+	<!--<link rel="stylesheet" type="text/css" charset="UTF-8" id="global_link" href="css/theme_1.css">-->
+	<link rel="stylesheet" type="text/css" charset="UTF-8" href="/css/topFloor.css?">
+	<style type="text/css" charset="UTF-8" id="css_change">
+	/*主题样式*/
+	body,html{
+		background-color: #000;
+		color: #fff;
+	}
+	.back_small_label{
+		background-color: rgba(125, 125, 125, 0.7);
+	}
+	.common_back{
+		background-color: #000;
+	}
+	</style>
+</head>
+<body>
+	<noscript>
+		<h3>您的浏览器不支持/未启用 JavaScript!(JavaScript is not supported / enabled in your browser)!</h3>
+	</noscript>
+
+    <article>
+		<div id="article_main"> <div> </div> </div>
+	</article>
+
+</body>
+<!--<script src="" type="text/javascript" charset="UTF-8"></script>-->
+<script type="text/javascript" charset="utf-8" src="/js/jquery/jquery.min.js?"></script>
+<script type="text/javascript" charset="utf-8" src="/js/md/marked.min.js?"></script>
+<script type="text/javascript" charset="utf-8" src="/js/chenjing/main.js?t"></script>
+<script type="text/javascript" charset="UTF-8">
+window.onresize = function(){
+	window.location.reload();
+}
+window.onload = function(){
+	var yun = document.yun;
+	yun.init_blog();
+	yun.init_click();
+	yun.init_right();
+	yun.tree('#article_right',[
+		{'name':'关于我(sketch)', 'id':'-aboutME-'}
+	])
+	yun.ajaxTXT('README.md',function(status,res){
+		console.log(status,res)
+		var m = yun.getEl('#article_main div');
+		m.innerHTML = marked(res);
+	})
+}
+</script>
+</html>
