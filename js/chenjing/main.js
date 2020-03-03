@@ -269,7 +269,13 @@ g_.init_blog = function(){
 	g_.add_left([
 		{'name':'欢迎页(Index)','url':'/'},
 		{'name':'首页(Home)','url':'/blog.html'},
-		{'name':'关于(About)','url':'/_about'}
+		{'name':'博客(Blog)','url':'/_blog/'},
+		{'name':'参考代码(Html)','url':'/_html/'},
+		{'name':'页面示例(Html Demo)','url':'/_htmlDemo/'},
+		{'name':'前端工具(js Tools)','url':'/_tools/'},
+		{'name':'编程相关(Program Related)','url':'/_program/'},
+		{'name':'脚本相关(JavaScript)','url':'/js/'},
+		{'name':'关于(About)','url':'/_about/'}
 	]);
 }
 g_.init_click = function(){
