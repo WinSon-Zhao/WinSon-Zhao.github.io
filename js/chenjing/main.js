@@ -205,8 +205,8 @@ g_.add_left = function(arr){
 	left_ul.innerHTML = html;*/
 }
 g_.init_footer = function(){
-  var footer = g_.createEl('footer');//底部
-  g_.cls(footer,'common_back');
+	var footer = g_.createEl('footer');//底部
+	g_.cls(footer,'common_back');
 	footer.innerHTML =  g_.heredoc(function(){/*!
 		<div>© 2016-2020 欢迎光临。保留所有权利。</div>
 		<div>(Welcome to visit. All rights reserved.)</div>
@@ -248,8 +248,8 @@ g_.init_right = function(){
 	g_.getEl('#floating').appendChild(toRight);
 
 	var article_right = g_.createEl('div');
-  g_.attr(article_right,{'id':'article_right'});
-  g_.cls(article_right,'common_back');
+	g_.attr(article_right,{'id':'article_right'});
+	g_.cls(article_right,'common_back');
 	article_right.innerHTML = '页面无标题列表(Page untitled list)';
 	g_.getEl('article').appendChild(article_right);
 
@@ -265,8 +265,8 @@ g_.init_blog = function(){
 	g_.init_header();
 	g_.init_footer();
 	g_.init_floating();
-  g_.init_left();
-  g_.add_left([
+	g_.init_left();
+	g_.add_left([
 		{'name':'欢迎页(Index)','url':'/'},
 		{'name':'首页(Home)','url':'/blog.html'},
 		{'name':'关于(About)','url':'/_about'}
